@@ -2,7 +2,7 @@ import React from 'react'
 
 interface ErrorBoundaryState {
     hasError: boolean;
-    error: React.ErrorInfo;
+    error: string | null;
 }
 
 
@@ -15,14 +15,19 @@ export default class ErrorBoundary extends React.Component<{}, ErrorBoundaryStat
         };
     }
 
+    static getDerivedStateFromError(error: Error) {
+        // Update state so the next render will show the fallback UI.
+        return { hasError: true };
+    }
+
 
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-        this.setState({ hasError: true });
+        this.setState({ hasError: true, error: errorInfo.componentStack });
     }
 
     render() {
         if (this.state.hasError) {
-            return <div>{this.state.error.componentStack}</div>;
+            return <div>{this.state.error}</div>;
         }
 
         return this.props.children;
