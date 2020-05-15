@@ -14,7 +14,7 @@ const Stack = createStackNavigator<StackParamList>();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" headerMode="none">
+      <Stack.Navigator initialRouteName="Home" headerMode="none" mode="modal"  >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Add" component={AddScreen} />
       </Stack.Navigator>
