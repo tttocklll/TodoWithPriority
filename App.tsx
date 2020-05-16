@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navigator from './src/Navigation';
-import ErrorBoundary from './ErrorBoundary'
+import RootErrorBoundary from './ErrorBoundary'
+console.disableYellowBox = true;
 
 const App: React.FunctionComponent = () => {
   return (
-    <ErrorBoundary>
+    <RootErrorBoundary>
       <Navigator />
-    </ErrorBoundary>
+    </RootErrorBoundary>
   );
 };
 
