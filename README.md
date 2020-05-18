@@ -11,7 +11,7 @@ You can run it both on iOS and on Android.
 - React
 - React Native (with Expo)
 
-Next I will implement:
+## Next I will implement:
 - Data persistence
 - Changeable parameters for Priority
 - Show what is done
