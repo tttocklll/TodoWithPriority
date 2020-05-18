@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from 'react-native';
 import { Header, Left, Right, Body, Title, Container, Text, Content, Button, Icon, List, ListItem, CheckBox } from 'native-base';
 import Modal from 'react-native-modal';
 import AddScreen from './Add'
@@ -25,8 +26,8 @@ export default class HomeScreen extends React.Component<HomeProps, HomeState> {
   constructor(props: HomeProps) {
     super(props);
     this.state = {
-      todos: [{ name: "test", urgency: 5, importance: 2, priority: 10, isDone: false }],
-      done: [{ name: "comp", urgency: 5, importance: 8, priority: 40, isDone: true }],
+      todos: [],
+      done: [],
       isModalVisible: false,
     }
   }
@@ -40,7 +41,7 @@ export default class HomeScreen extends React.Component<HomeProps, HomeState> {
   }
   addItem(name: string, urgency: number, importance: number, ) {
     let newToDos = this.state.todos;
-    newToDos.push({ name: name, urgency: urgency, importance: importance, priority: urgency * importance, isDone: false });
+    newToDos.push({ name: name, urgency: urgency, importance: importance, priority: urgency + importance, isDone: false });
     newToDos = this.sortToDos(newToDos);
     this.setState({ todos: newToDos });
   }
@@ -61,7 +62,22 @@ export default class HomeScreen extends React.Component<HomeProps, HomeState> {
     this.setState({ done: newDone });
     this.removeItem(i);
   }
-
+  // Works on both Android and iOS
+  toggleAlert(i: number) {
+    Alert.alert(
+      'Delete',
+      'Are you sure you want to delete?',
+      [
+        {
+          text: 'Cancel',
+          // onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel'
+        },
+        { text: 'OK', onPress: () => this.removeItem(i) }
+      ],
+      { cancelable: false }
+    );
+  }
 
   render() {
     let renderCardItem = this.state.todos.map((item: ToDoItems, i: number) =>
@@ -75,7 +91,7 @@ export default class HomeScreen extends React.Component<HomeProps, HomeState> {
           <Text style={{ fontSize: 18 }}>{item.name}</Text>
         </Body>
         <Right>
-          <Button transparent onPress={() => this.removeItem(i)}>
+          <Button transparent onPress={() => this.toggleAlert(i)}>
             <Icon name="trash" />
           </Button>
         </Right>
