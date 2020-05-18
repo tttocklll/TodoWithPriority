@@ -69,6 +69,7 @@ export default class HomeScreen extends React.Component<AddProps, AddState> {
           <Button
             onPress={() => this.props.nav.addItem(this.state.name, this.state.urgency, this.state.importance)}
             onPressOut={this.props.nav.toggleModal}
+            block
           >
             <Text>OK</Text>
           </Button>
