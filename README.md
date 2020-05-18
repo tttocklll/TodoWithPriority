@@ -3,7 +3,8 @@
 ## Description
 
 This is a simple Todo app, but Todos are sorted based on "Priority."
-You can run it both on iOS and on Android.
+
+You can run it **both on iOS and on Android**.
 
 ## Created with:
 
