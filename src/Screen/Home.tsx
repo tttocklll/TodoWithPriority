@@ -1,7 +1,6 @@
 import React from 'react';
 import { Header, Left, Right, Body, Title, Container, Text, Content, Button, Icon, List, ListItem, CheckBox } from 'native-base';
 import Modal from 'react-native-modal';
-import CommonFooter from './Footer';
 import AddScreen from './Add'
 
 const sleep = (msec: number) => new Promise(resolve => setTimeout(resolve, msec));
@@ -112,7 +111,6 @@ export default class HomeScreen extends React.Component<HomeProps, HomeState> {
         >
           <AddScreen nav={this} />
         </Modal>
-        <CommonFooter />
       </Container>
 
     );
